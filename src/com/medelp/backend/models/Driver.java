@@ -22,6 +22,16 @@ public class Driver {
 	private String address;
 	
 	private boolean isCheckedIn;
+	
+//	private Driver() {}
+	
+	public Driver(String driverId, String email, String phoneNumber, String deviceId, String addess, boolean isCheckedIn) {
+		this.driverId = driverId;
+		this.email = email;
+		this.phoneNumber = phoneNumber;
+		this.address = addess;
+		this.isCheckedIn = isCheckedIn;
+	}
 
 	public String getEmail() {
 	    return email;

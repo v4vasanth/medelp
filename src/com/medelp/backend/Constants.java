@@ -13,11 +13,13 @@ public final class Constants {
      * Google Cloud Messaging API key.
      */
     public static final String GCM_API_KEY = "YOUR-GCM-API-KEY";
+    
+    public static final String EMAIL_SCOPE = "https://www.googleapis.com/auth/userinfo.email";
 
     /**
      * Android client ID from Google Cloud console.
      */
-    public static final String ANDROID_CLIENT_ID = "812425071703-megrp89mskee364omkdmvu876l4ejjnm.apps.googleusercontent.com";
+    public static final String ANDROID_CLIENT_ID = "812425071703-33caiunhihk607m8vfjpigp2kq3d0cg2.apps.googleusercontent.com";
 
     /**
      * iOS client ID from Google Cloud console.
@@ -28,11 +30,15 @@ public final class Constants {
      * Web client ID from Google Cloud console.
      */
     public static final String WEB_CLIENT_ID = "255790116154-nash7gcvb7lrpei5mcs6pnbmrchedn32.apps.googleusercontent.com";
+    
+    public static final String ANDROID_WEB_CLIENT_ID = "812425071703-f0ua6vp39alfqah2n69ggvn8j4isg5v2.apps.googleusercontent.com";
 
     /**
      * Audience ID used to limit access to some client to the API.
      */
     public static final String AUDIENCE_ID = WEB_CLIENT_ID;
+    
+    public static final String ANDROID_AUDIENCE_ID = ANDROID_WEB_CLIENT_ID;
 
     /**
      * API package name.
