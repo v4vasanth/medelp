@@ -31,8 +31,6 @@ public class AuthenticateUser {
 		allowedClients.add(Constants.IOS_CLIENT_ID);
 		allowedClients.add(Constants.API_EXPLORER_CLIENT_ID);
 		allowedClients.add(Constants.WEB_CLIENT_ID);
-		allowedClients.add(Constants.ANDROID_WEB_CLIENT_ID);
-		allowedClients.add(Constants.ANDROID_AUDIENCE_ID);
 	}
 
 	public User authenticate() throws OAuthRequestException, OAuthServiceFailureException {

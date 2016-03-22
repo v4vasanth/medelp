@@ -22,9 +22,7 @@ import java.util.logging.Logger;
  */
 @Api(name = "customerApis", version = "v1", namespace = @ApiNamespace(ownerDomain = Constants.API_OWNER, ownerName = Constants.API_OWNER, packagePath = Constants.API_PACKAGE_PATH), scopes = {
 		Constants.EMAIL_SCOPE }, clientIds = { Constants.WEB_CLIENT_ID, Constants.ANDROID_CLIENT_ID,
-				Constants.IOS_CLIENT_ID, Constants.ANDROID_WEB_CLIENT_ID,
-				Constants.API_EXPLORER_CLIENT_ID }, audiences = { Constants.ANDROID_AUDIENCE_ID,
-						Constants.AUDIENCE_ID })
+				Constants.IOS_CLIENT_ID, Constants.API_EXPLORER_CLIENT_ID }, audiences = { Constants.AUDIENCE_ID })
 public class CustomerApis {
 
 	private static final Logger log = Logger.getLogger(CustomerApis.class.getName());
@@ -34,7 +32,7 @@ public class CustomerApis {
 			@Nullable @Named("deviceId") String deviceId, @Nullable @Named("address") String address)
 			throws OAuthRequestException {
 
-		log.info("------------Inside the createCustomer API");
+		log.info("------------Inside the createCustomer API ------------");
 
 		AuthenticateUser authenticateUser = AuthenticateUser.getInstance();
 		User user = authenticateUser.authenticate();
