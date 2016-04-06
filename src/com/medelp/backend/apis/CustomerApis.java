@@ -9,7 +9,6 @@ import com.google.appengine.api.oauth.OAuthRequestException;
 import com.google.appengine.api.users.User;
 import com.googlecode.objectify.Key;
 import com.medelp.backend.models.Customer;
-import com.medelp.backend.utils.AuthenticateUser;
 import com.medelp.backend.Constants;
 import static com.medelp.backend.utils.OfyService.ofy;
 
@@ -28,25 +27,55 @@ public class CustomerApis {
 	private static final Logger log = Logger.getLogger(CustomerApis.class.getName());
 
 	@ApiMethod(name = "createCustomer")
-	public Customer createCustomer(@Named("phoneNumber") String phoneNumber,
+	public Customer createCustomer(final User user, @Named("phoneNumber") String phoneNumber,
 			@Nullable @Named("deviceId") String deviceId, @Nullable @Named("address") String address)
 			throws OAuthRequestException {
 
 		log.info("------------Inside the createCustomer API ------------");
 
-		AuthenticateUser authenticateUser = AuthenticateUser.getInstance();
-		User user = authenticateUser.authenticate();
-
-		Key<Customer> customerKey = Key.create(Customer.class, user.getUserId());
+		if(user == null)
+			throw new OAuthRequestException("Authorization required.");
+		
+		String userId = user.getUserId();
+		
+		if (userId == null)
+			userId = user.getEmail();
+		
+		Key<Customer> customerKey = Key.create(Customer.class, userId);
+		
 		Customer customer = (Customer) ofy().load().key(customerKey).now();
+		log.info("loaded if exists");
 		if (customer == null) {
-			log.info("Creating new customer with userId: " + user.getUserId());
-			customer = new Customer(user.getUserId(), user.getEmail(), phoneNumber, deviceId, address);
+			log.info("Creating new customer with userId: " + userId);
+			customer = new Customer(userId, user.getEmail(), phoneNumber, deviceId, address);
 		} else {
-			log.info("Retrieved customer with userId: " + user.getUserId());
+			log.info("Retrieved customer with userId: " + userId);
 			customer.updateDetails(phoneNumber, address, deviceId);
 		}
 		ofy().save().entity(customer).now();
 		return customer;
 	}
+
+	@ApiMethod(name = "getCustomer")
+	public Customer getCustomer(final User user) throws OAuthRequestException {
+
+		log.info("------------Inside the getCustomer API ------------");
+
+		if(user == null)
+			throw new OAuthRequestException("Authorization required.");
+		String userId = user.getUserId();
+		
+		if (userId == null)
+			userId = user.getEmail();
+		Key<Customer> customerKey = Key.create(Customer.class,userId);
+		Customer customer = (Customer) ofy().load().key(customerKey).now();
+		if (customer == null) {
+			log.info("No customer found with userId: " + userId);
+			throw new IllegalArgumentException("No customer found with userId: " + userId);
+		} else {
+			log.info("Retrieved customer with userId: " + userId);
+			return customer;
+		}
+	}
+	
 }

@@ -19,7 +19,9 @@ public final class Constants {
     /**
      * Android client ID from Google Cloud console.
      */
-    public static final String ANDROID_CLIENT_ID = "255790116154-662itbvanj0l5qj8bn1efc9v2rb0k1qs.apps.googleusercontent.com";
+    public static final String ANDROID_CLIENT_ID = "615139934988-1nfc3bbehj2cr9si49h8ju4k4l92svr4.apps.googleusercontent.com";
+//    		"255790116154-662itbvanj0l5qj8bn1efc9v2rb0k1qs.apps.googleusercontent.com";
+//    		"615139934988-1nfc3bbehj2cr9si49h8ju4k4l92svr4.apps.googleusercontent.com";
 
     /**
      * iOS client ID from Google Cloud console.

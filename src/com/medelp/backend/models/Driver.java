@@ -2,6 +2,7 @@ package com.medelp.backend.models;
 
 import com.googlecode.objectify.annotation.Entity;
 import com.googlecode.objectify.annotation.Id;
+import com.googlecode.objectify.annotation.Index;
 
 /**
  * 
@@ -15,22 +16,23 @@ public class Driver {
 	
 	private String email;
 
+	@Index
 	private String phoneNumber;
 	
 	private String deviceId;
 	
 	private String address;
 	
+	@Index
 	private boolean isCheckedIn;
 	
-//	private Driver() {}
+	private Driver() {}
 	
-	public Driver(String driverId, String email, String phoneNumber, String deviceId, String addess, boolean isCheckedIn) {
+	public Driver(String driverId, String email, String phoneNumber, String deviceId, String addess) {
 		this.driverId = driverId;
 		this.email = email;
 		this.phoneNumber = phoneNumber;
 		this.address = addess;
-		this.isCheckedIn = isCheckedIn;
 	}
 
 	public String getEmail() {
@@ -71,5 +73,14 @@ public class Driver {
 
 	public void setCheckedIn(boolean isCheckedIn) {
 	    this.isCheckedIn = isCheckedIn;
+	}
+	
+	public void updateDetails(String newPhoneNumber, String newAddress, String newDeviceId) {
+		if (newPhoneNumber != null)
+			this.phoneNumber = newPhoneNumber;
+		if (newAddress != null)
+			this.address = newAddress;
+		if (newDeviceId != null)
+			this.deviceId = newDeviceId;
 	}
 }
